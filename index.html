@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StyleHub</title>
+<title>StyleHub - Streetwear Hoodies</title>
 <style>
 body {
   font-family: 'Arial', sans-serif;
@@ -11,7 +11,6 @@ body {
   background: #111;
   color: #eee;
 }
-
 header {
   background: #000;
   color: #fff;
@@ -19,7 +18,6 @@ header {
   text-align: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
-
 header h1 {
   margin: 0;
   font-size: 2.2em;
@@ -27,14 +25,12 @@ header h1 {
   color: #0ff;
   text-shadow: 0 0 8px #0ff;
 }
-
 header p {
   margin: 8px 0 0;
   font-weight: 300;
   font-size: 1.1em;
   color: #aaa;
 }
-
 .products {
   display: flex;
   justify-content: center;
@@ -43,7 +39,6 @@ header p {
   flex-wrap: wrap;
   perspective: 1000px;
 }
-
 .product {
   position: relative;
   background: #1a1a1a;
@@ -55,7 +50,6 @@ header p {
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
 }
-
 .product::before {
   content: '';
   position: absolute;
@@ -70,98 +64,88 @@ header p {
   z-index: 0;
   filter: blur(30px);
 }
-
 .product:hover::before {
   opacity: 0.5;
   animation: glow 4s linear infinite;
 }
-
 @keyframes glow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
 .product:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 30px rgba(0,255,255,0.3);
 }
-
-.product img {
+.product .image-container {
+  position: relative;
   width: 100%;
   height: 280px;
+}
+.product img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  transition: transform 0.3s, filter 0.3s;
-  position: relative;
-  z-index: 1;
+  border-radius: 10px;
+  transition: opacity 0.5s;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-
-.product:hover img {
-  transform: scale(1.05) rotate(-1deg);
-  filter: brightness(1.15) saturate(1.2);
-}
-
+.product:hover img.front { opacity: 0; }
+.product:hover img.back { opacity: 1; }
+.product img.back { opacity: 0; }
 .product h3 {
   margin: 15px 0 5px;
   font-size: 1.3em;
   color: #0ff;
   text-shadow: 0 0 5px #0ff;
-  position: relative;
-  z-index: 1;
 }
-
 .product p {
   font-size: 1.1em;
   font-weight: bold;
   color: #fff;
   margin: 0;
-  position: relative;
-  z-index: 1;
 }
-
-.product a {
+.product button {
   display: inline-block;
   margin: 15px 0 20px;
   padding: 12px 25px;
   background: #0ff;
   color: #111;
-  text-decoration: none;
   font-weight: bold;
   border-radius: 8px;
+  border: none;
+  cursor: pointer;
   transition: transform 0.2s, box-shadow 0.3s;
   box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
-  position: relative;
-  z-index: 1;
 }
-
-.product a:hover {
+.product button:hover {
   transform: scale(1.1);
   box-shadow: 0 0 20px #0ff, 0 0 40px #0ff, 0 0 60px #0ff;
 }
-
-footer {
-  background: #000;
-  color: #aaa;
-  text-align: center;
-  padding: 25px 10px;
-  margin-top: 50px;
-  font-size: 0.9em;
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 5px #0ff;
+.cart {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,255,255,0.3);
+  color: #fff;
+  width: 280px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
-
-@media(max-width: 900px) {
-  .products {
-    gap: 20px;
-    padding: 40px 15px;
-  }
-}
-
-@media(max-width: 600px) {
-  .product {
-    width: 90%;
-  }
-}
+.cart h3 { margin-top:0; color:#0ff; }
+.cart ul { list-style:none; padding:0; margin:10px 0; }
+.cart li { margin:5px 0; display:flex; justify-content: space-between; align-items: center; }
+.cart li input { width: 40px; margin-left:5px; }
+.cart li button { padding:2px 6px; background:red; color:#fff; border:none; cursor:pointer; border-radius:4px; }
+.cart button#checkout { width:100%; padding:10px; margin-top:10px; }
+footer { background:#000; color:#aaa; text-align:center; padding:25px 10px; margin-top:50px; font-size:0.9em; letter-spacing:0.5px; text-shadow:0 0 5px #0ff; }
+@media(max-width:900px) { .products { gap:20px; padding:40px 15px; } .cart { width:200px; } }
+@media(max-width:600px) { .product { width:90%; } .cart { width:90%; right:5%; } }
 </style>
 </head>
 <body>
@@ -172,35 +156,105 @@ footer {
 </header>
 
 <div class="products">
-
-  <div class="product">
-    <img src="./images/black-hoodie.jpg" alt="Black Hoodie">
+  <div class="product" data-name="Black Hoodie" data-price="999">
+    <div class="image-container">
+      <img class="front" src="https://i.imgur.com/6Y9V8vC.jpg" alt="Black Hoodie Front">
+      <img class="back" src="https://i.imgur.com/Yb6Q7LU.jpg" alt="Black Hoodie Back">
+    </div>
     <h3>Black Hoodie</h3>
     <p>₹999</p>
-    <a href="./checkout.html">Buy Now</a>
+    <button>Add to Cart</button>
   </div>
-
-  <div class="product">
-    <img src="./images/grey-hoodie.jpg" alt="Grey Hoodie">
+  <div class="product" data-name="Grey Hoodie" data-price="1099">
+    <div class="image-container">
+      <img class="front" src="https://i.imgur.com/Wb5rWXL.jpg" alt="Grey Hoodie Front">
+      <img class="back" src="https://i.imgur.com/8VLyNHa.jpg" alt="Grey Hoodie Back">
+    </div>
     <h3>Grey Hoodie</h3>
     <p>₹1099</p>
-    <a href="./checkout.html">Buy Now</a>
+    <button>Add to Cart</button>
   </div>
-
-  <div class="product">
-    <img src="./images/red-hoodie.jpg" alt="Red Hoodie">
+  <div class="product" data-name="Red Hoodie" data-price="1199">
+    <div class="image-container">
+      <img class="front" src="https://i.imgur.com/Kr8g3dD.jpg" alt="Red Hoodie Front">
+      <img class="back" src="https://i.imgur.com/3x6Nfvn.jpg" alt="Red Hoodie Back">
+    </div>
     <h3>Red Hoodie</h3>
     <p>₹1199</p>
-    <a href="./checkout.html">Buy Now</a>
+    <button>Add to Cart</button>
   </div>
-
 </div>
 
-<footer>
-  <p>© 2026 StyleHub. All rights reserved.</p>
-</footer>
+<div class="cart">
+  <h3>Shopping Cart</h3>
+  <ul id="cart-items"><li>No items yet.</li></ul>
+  <p>Total: ₹<span id="cart-total">0</span></p>
+  <button id="checkout">Checkout</button>
+</div>
 
+<script>
+let cart = [];
+
+function updateCart() {
+  const cartItems = document.getElementById('cart-items');
+  const cartTotal = document.getElementById('cart-total');
+  cartItems.innerHTML = '';
+  if(cart.length===0){ cartItems.innerHTML='<li>No items yet.</li>'; cartTotal.textContent=0; return; }
+  let total=0;
+  cart.forEach((item,index)=>{
+    total += item.price*item.quantity;
+    const li = document.createElement('li');
+    li.innerHTML = `${item.name} x <input type="number" value="${item.quantity}" min="1"> ₹${item.price*item.quantity} <button data-index="${index}">Remove</button>`;
+    cartItems.appendChild(li);
+    li.querySelector('input').addEventListener('change',e=>{
+      let val=parseInt(e.target.value); if(val<1) val=1; cart[index].quantity=val; updateCart();
+    });
+    li.querySelector('button').addEventListener('click',()=>{ cart.splice(index,1); updateCart(); });
+  });
+  cartTotal.textContent=total;
+}
+
+document.querySelectorAll('.product button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const product=btn.parentElement;
+    const name=product.getAttribute('data-name');
+    const price=parseInt(product.getAttribute('data-price'));
+    const existing=cart.find(item=>item.name===name);
+    if(existing){ existing.quantity+=1; } else { cart.push({name,price,quantity:1}); }
+    updateCart();
+  });
+});
+
+document.getElementById('checkout').addEventListener('click',()=>{
+  if(cart.length===0){ alert('Your cart is empty!'); return; }
+  let form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'https://www.paypal.com/cgi-bin/webscr';
+  form.target = '_blank';
+  form.innerHTML = `
+    <input type="hidden" name="cmd" value="_cart">
+    <input type="hidden" name="upload" value="1">
+    <input type="hidden" name="business" value="yourpaypalemail@example.com">
+  `;
+  cart.forEach((item,index)=>{
+    form.innerHTML += `
+      <input type="hidden" name="item_name_${index+1}" value="${item.name}">
+      <input type="hidden" name="amount_${index+1}" value="${item.price}">
+      <input type="hidden" name="quantity_${index+1}" value="${item.quantity}">
+    `;
+  });
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+});
+</script>
+
+<footer>
+<p>© 2026 StyleHub. All rights reserved.</p>
+</footer>
 </body>
 </html>
+
+  
 
 
