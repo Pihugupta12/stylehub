@@ -2,203 +2,151 @@
 <html>
 <head>
 <title>LuxeJewels</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-body{
-  margin:0;
-  font-family:Poppins;
-  background:linear-gradient(180deg,#fff,#f7f2ff);
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:#fffafc}
 
-/* HEADER */
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 30px;
-  background:white;
-  box-shadow:0 3px 10px rgba(0,0,0,0.1);
+/* NAVBAR */
+nav{
+display:flex;justify-content:space-between;align-items:center;
+padding:15px 50px;background:#111;color:white;position:sticky;top:0;
 }
-.logo{
-  font-size:26px;
-  font-weight:700;
-  color:#b76eff;
-}
-nav a{
-  margin:0 10px;
-  text-decoration:none;
-  color:#444;
-}
+nav h1{color:#ff4da6}
+nav a{color:white;text-decoration:none;margin:0 15px}
+nav a:hover{color:#ff4da6}
 
 /* HERO */
 .hero{
-  background:url("https://images.unsplash.com/photo-1515562141207-7a88fb7ce338") center/cover;
-  height:300px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-size:38px;
-  font-weight:700;
-  text-shadow:0 0 20px black;
+height:85vh;
+background:url("https://images.unsplash.com/photo-1602752250015-52934bc45613") center/cover;
+display:flex;align-items:center;justify-content:center;
+color:white;text-align:center;
 }
+.hero h2{font-size:55px}
+.hero button{
+padding:15px 35px;border:none;background:#ff4da6;color:white;
+font-size:18px;margin-top:20px;border-radius:5px;cursor:pointer;
+}
+
+/* CATEGORIES */
+.categories{
+display:flex;justify-content:center;gap:20px;padding:40px;flex-wrap:wrap;
+}
+.cat{background:#ffe6f2;padding:20px 30px;border-radius:30px}
 
 /* PRODUCTS */
-.products{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:30px;
-  padding:50px 20px;
+.products{padding:70px 40px;text-align:center}
+.grid{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;
 }
-.product{
-  width:260px;
-  background:white;
-  border-radius:15px;
-  padding:20px;
-  text-align:center;
-  box-shadow:0 5px 20px rgba(0,0,0,0.1);
-  transition:0.3s;
+.card{
+background:white;padding:20px;border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);transition:.3s;
 }
-.product:hover{transform:translateY(-10px);}
-.product img{
-  width:100%;
-  height:260px;
-  object-fit:cover;
-  border-radius:10px;
-}
-.price{
-  color:#b76eff;
-  font-size:20px;
-  font-weight:700;
-}
-button{
-  background:#b76eff;
-  color:white;
-  border:none;
-  padding:12px 25px;
-  border-radius:25px;
-  cursor:pointer;
-  margin-top:10px;
-}
+.card:hover{transform:translateY(-10px)}
+.card img{width:100%;height:250px;object-fit:cover;border-radius:10px}
+.price{color:#ff4da6;font-size:22px;margin:10px 0}
+.btn{padding:10px 20px;background:#111;color:white;border:none;border-radius:5px}
 
-/* CART */
-.cart{
-  position:fixed;
-  right:20px;
-  top:20px;
-  background:white;
-  padding:20px;
-  border-radius:15px;
-  width:230px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
-}
+/* CONTACT */
+.contact{text-align:center;padding:70px}
 
-/* INSTAGRAM BUTTON */
+/* FLOAT BUTTONS */
+.whatsapp{
+position:fixed;bottom:20px;left:20px;background:#25D366;
+color:white;padding:15px 20px;border-radius:50px;text-decoration:none;
+}
 .insta{
-  position:fixed;
-  left:20px;
-  bottom:20px;
-  background:#ff2a7a;
-  color:white;
-  padding:12px 18px;
-  border-radius:30px;
-  text-decoration:none;
+position:fixed;bottom:20px;right:20px;background:#ff2a7a;
+color:white;padding:15px 20px;border-radius:50px;text-decoration:none;
 }
 
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:30px;
-  color:#777;
-}
-
-/* MOBILE */
-@media(max-width:600px){
-  .products{flex-direction:column;align-items:center;}
-}
+footer{background:#111;color:white;text-align:center;padding:20px;margin-top:40px}
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">💎 LuxeJewels</div>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Shop</a>
-    <a href="#">Contact</a>
-  </nav>
-</header>
+<nav>
+<h1>LuxeJewels 💎</h1>
+<div>
+<a href="#">Home</a>
+<a href="#shop">Shop</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
 
-<div class="hero">Shine Everyday ✨</div>
+<section class="hero">
+<div>
+<h2>Luxury Jewellery</h2>
+<p>Shine Everyday ✨</p>
+<button onclick="document.getElementById('shop').scrollIntoView()">Shop Now</button>
+</div>
+</section>
 
-<!-- CART -->
-<div class="cart">
-  <h3>Shopping Cart</h3>
-  <p id="items">No items yet</p>
-  <p>Total ₹<span id="total">0</span></p>
-
-  <!-- PAYPAL CHECKOUT -->
-  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-    <input type="hidden" name="cmd" value="_xclick">
-    <input type="hidden" name="business" value="yourpaypalemail@example.com">
-    <input type="hidden" name="item_name" value="Jewellery Order">
-    <input type="hidden" name="amount" id="paypalAmount" value="0">
-    <input type="hidden" name="currency_code" value="INR">
-    <input type="submit" value="Checkout" style="width:100%;padding:10px;background:black;color:white;border:none;border-radius:10px;">
-  </form>
+<div class="categories">
+<div class="cat">Rings</div>
+<div class="cat">Necklaces</div>
+<div class="cat">Bracelets</div>
+<div class="cat">Earrings</div>
 </div>
 
-<!-- PRODUCTS -->
-<div class="products">
+<section id="shop" class="products">
+<h2>Our Collection</h2>
 
-<div class="product">
+<div class="grid">
+
+<div class="card">
 <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638">
 <h3>Diamond Ring</h3>
-<p class="price">₹2999</p>
-<button onclick="add(2999)">Add to Cart</button>
+<p class="price">₹2499</p>
+<button class="btn" onclick="pay()">Buy Now</button>
 </div>
 
-<div class="product">
-<img src="https://images.unsplash.com/photo-1603974372039-adc49044b6bd">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908">
 <h3>Gold Necklace</h3>
 <p class="price">₹3999</p>
-<button onclick="add(3999)">Add to Cart</button>
+<button class="btn" onclick="pay()">Buy Now</button>
 </div>
 
-<div class="product">
-<img src="https://images.unsplash.com/photo-1588449668365-d15e397f6787">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d">
 <h3>Pearl Earrings</h3>
-<p class="price">₹1999</p>
-<button onclick="add(1999)">Add to Cart</button>
-</div>
-
-<div class="product">
-<img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908">
-<h3>Silver Bracelet</h3>
 <p class="price">₹1499</p>
-<button onclick="add(1499)">Add to Cart</button>
+<button class="btn" onclick="pay()">Buy Now</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed">
+<h3>Luxury Bracelet</h3>
+<p class="price">₹1999</p>
+<button class="btn" onclick="pay()">Buy Now</button>
 </div>
 
 </div>
+</section>
 
-<a class="insta" href="https://instagram.com" target="_blank">Follow on Instagram</a>
+<section id="contact" class="contact">
+<h2>Contact Us</h2>
+<p>Email: your@email.com</p>
+</section>
+
+<a class="whatsapp" href="https://wa.me/91YOURNUMBER">WhatsApp</a>
+<a class="insta" href="https://instagram.com">Instagram</a>
 
 <footer>© 2026 LuxeJewels</footer>
 
 <script>
-let total=0;
-function add(price){
- total+=price;
- document.getElementById("total").innerText=total;
- document.getElementById("items").innerText="Items added ✔";
- document.getElementById("paypalAmount").value=total;
+function pay(){
+alert("Payment integration ready. Add Razorpay/UPI later 💳");
 }
 </script>
 
 </body>
 </html>
+
